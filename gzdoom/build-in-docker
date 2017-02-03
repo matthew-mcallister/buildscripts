@@ -1,0 +1,33 @@
+#!/bin/bash
+set -euxo pipefail
+
+cp -r /mnt /work
+cd /work
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get -y install --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    libbz2-dev \
+    libfluidsynth-dev \
+    libgme-dev \
+    libgtk-3-dev \
+    libmpg123-dev \
+    libopenal-dev \
+    libsdl2-dev \
+    libsndfile1-dev \
+    nasm \
+    zlib1g-dev \
+    ;
+
+git clone https://github.com/coelckers/gzdoom.git
+
+mkdir gzdoom/build
+cd gzdoom/build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DNO_FMOD=ON
+make -j8
+
+install -o "$DIST_UID" -g "$DIST_GID" -m 755 gzdoom /mnt/dist
+install -o "$DIST_UID" -g "$DIST_GID" -m 644 *.pk3 /mnt/dist
