@@ -1,0 +1,34 @@
+#!/bin/bash
+set -euxo pipefail
+
+mkdir /work
+cd /work
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get -y install --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    libbz2-dev \
+    libcurl4-openssl-dev \
+    libfluidsynth-dev \
+    libfreeimage-dev \
+    libftgl-dev \
+    libglew-dev \
+    libgtk2.0-dev \
+    libsfml-dev \
+    libwxgtk3.0-dev \
+    libwxgtk-media3.0-dev \
+    zip \
+    ;
+
+git clone https://github.com/sirjuddington/SLADE.git
+
+mkdir -p SLADE/build
+cd SLADE/build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DNO_WEBVIEW=ON
+make -j8
+
+install -o "$DIST_UID" -g "$DIST_GID" -m 755 slade /mnt/dist
+install -o "$DIST_UID" -g "$DIST_GID" -m 644 slade.pk3 /mnt/dist
