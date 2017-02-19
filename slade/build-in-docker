@@ -23,11 +23,11 @@ apt-get -y install --no-install-recommends \
     zip \
     ;
 
-git clone https://github.com/sirjuddington/SLADE.git
+git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/sirjuddington/SLADE.git}
 
 mkdir -p SLADE/build
 cd SLADE/build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DNO_WEBVIEW=ON
+cmake .. $CMAKE_OPTIONS -DNO_WEBVIEW=ON
 make -j8
 
 install -o "$DIST_UID" -g "$DIST_GID" -m 755 slade /mnt/dist
