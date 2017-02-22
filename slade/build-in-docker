@@ -23,7 +23,7 @@ apt-get -y install --no-install-recommends \
     zip \
     ;
 
-git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/sirjuddington/SLADE.git}
+git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/sirjuddington/SLADE.git} SLADE
 
 mkdir -p SLADE/build
 cd SLADE/build

@@ -22,7 +22,7 @@ apt-get -y install --no-install-recommends \
     zlib1g-dev \
     ;
 
-git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/coelckers/gzdoom.git}
+git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/coelckers/gzdoom.git} gzdoom
 
 mkdir -p gzdoom/build
 cd gzdoom/build
