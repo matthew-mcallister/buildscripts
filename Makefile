@@ -1,3 +1,5 @@
+DOCKER_IMAGE ?= docker.ocf.berkeley.edu/theocf/debian:stretch
+
 .PHONY: release
 release: build_release
 
@@ -15,5 +17,5 @@ build_%:
 		-e "GIT_OPTIONS=$(GIT_OPTIONS)" \
 		-e "GIT_REPO=$(GIT_REPO)" \
 		-e "CMAKE_OPTIONS=-DCMAKE_RELEASE_TYPE=$* $(CMAKE_OPTIONS)" \
-		"docker.ocf.berkeley.edu/theocf/debian:stretch" \
+		"$(DOCKER_IMAGE)" \
 		/mnt/build-in-docker
