@@ -16,6 +16,6 @@ build_%:
 		-e "DIST_GID=$(shell id -g)" \
 		-e "GIT_OPTIONS=$(GIT_OPTIONS)" \
 		-e "GIT_REPO=$(GIT_REPO)" \
-		-e "CMAKE_OPTIONS=-DCMAKE_RELEASE_TYPE=$* $(CMAKE_OPTIONS)" \
+		-e "CMAKE_OPTIONS=-DCMAKE_BUILD_TYPE=$* $(CMAKE_OPTIONS)" \
 		"$(DOCKER_IMAGE)" \
 		/mnt/build-in-docker
