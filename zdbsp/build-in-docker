@@ -1,0 +1,23 @@
+#!/bin/bash
+set -euxo pipefail
+
+mkdir /work
+cd /work
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get -y install --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    zlib1g-dev \
+    ;
+
+git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/rheit/zdbsp.git} zdbsp
+
+mkdir -p zdbsp/build
+cd zdbsp/build
+cmake .. $CMAKE_OPTIONS
+make -j
+
+install -o "$DIST_UID" -g "$DIST_GID" -m 755 zdbsp /mnt/dist
