@@ -17,5 +17,6 @@ build_%:
 		-e "GIT_OPTIONS=$(GIT_OPTIONS)" \
 		-e "GIT_REPO=$(GIT_REPO)" \
 		-e "CMAKE_OPTIONS=-DCMAKE_BUILD_TYPE=$* $(CMAKE_OPTIONS)" \
+		-e "MAKE_OPTIONS=-j8" \
 		"$(DOCKER_IMAGE)" \
 		/mnt/build-in-docker

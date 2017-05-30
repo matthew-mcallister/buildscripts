@@ -27,7 +27,7 @@ git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/coelckers/gzdoom.git} gzdo
 mkdir -p gzdoom/build
 cd gzdoom/build
 cmake .. $CMAKE_OPTIONS -DNO_FMOD=ON
-make -j
+make $MAKE_OPTIONS
 
 install -o "$DIST_UID" -g "$DIST_GID" -m 755 gzdoom /mnt/dist
 install -o "$DIST_UID" -g "$DIST_GID" -m 644 *.pk3 /mnt/dist

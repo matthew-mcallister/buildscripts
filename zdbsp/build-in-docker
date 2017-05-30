@@ -18,6 +18,6 @@ git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/rheit/zdbsp.git} zdbsp
 mkdir -p zdbsp/build
 cd zdbsp/build
 cmake .. $CMAKE_OPTIONS
-make -j
+make $MAKE_OPTIONS
 
 install -o "$DIST_UID" -g "$DIST_GID" -m 755 zdbsp /mnt/dist
