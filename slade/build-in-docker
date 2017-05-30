@@ -28,7 +28,7 @@ git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/sirjuddington/SLADE.git} S
 mkdir -p SLADE/build
 cd SLADE/build
 cmake .. $CMAKE_OPTIONS -DNO_WEBVIEW=ON
-make $MAKE_OPTIONS
+make $MAKE_OPTIONS slade_unity
 
 install -o "$DIST_UID" -g "$DIST_GID" -m 755 slade /mnt/dist
 install -o "$DIST_UID" -g "$DIST_GID" -m 644 slade.pk3 /mnt/dist
