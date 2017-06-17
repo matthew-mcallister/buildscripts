@@ -1,0 +1,37 @@
+#!/bin/bash
+set -euxo pipefail
+
+mkdir /work
+cd /work
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get -y install --no-install-recommends \
+    build-essential \
+    cmake \
+    gcc \
+    git \
+    libjansson-dev \
+    libcurl4-openssl-dev \
+    libcrypto++-dev \
+    libfontconfig1-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libsdl2-dev \
+    libsdl2-ttf-dev \
+    libspeex-dev \
+    libspeexdsp-dev \
+    libssl-dev \
+    libzip-dev \
+    pkg-config \
+    ;
+
+git clone $GIT_OPTIONS ${GIT_REPO:-https://github.com/OpenRCT2/OpenRCT2.git} openrct
+
+mkdir -p openrct/build
+cd openrct/build
+cmake .. $CMAKE_OPTIONS
+make $MAKE_OPTIONS
+
+install -o "$DIST_UID" -g "$DIST_GID" -m 755 openrct2 /mnt/dist
+install -o "$DIST_UID" -g "$DIST_GID" -m 644 libopenrct2.so /mnt/dist
