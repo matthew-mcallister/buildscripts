@@ -32,6 +32,11 @@ mkdir -p openrct/build
 cd openrct/build
 cmake .. $CMAKE_OPTIONS
 make $MAKE_OPTIONS
+make $MAKE_OPTIONS g2
 
 install -o "$DIST_UID" -g "$DIST_GID" -m 755 openrct2 /mnt/dist
-install -o "$DIST_UID" -g "$DIST_GID" -m 644 libopenrct2.so /mnt/dist
+install -o "$DIST_UID" -g "$DIST_GID" -m 644 libopenrct2.so g2.dat /mnt/dist
+
+# Optional but convenient
+cp -r ../data /mnt/dist
+chown -R "$DIST_UID:$DIST_GID" /mnt/dist/data
